@@ -1,0 +1,60 @@
+﻿@model List<PruebaAPI.Models.Personas>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div id="MiDiv">
+
+</div>
+
+<script>
+
+    $(document).ready(function () { Obten(); });
+        function Obten() {
+
+        fetch("@Url.Content("~/Json/ObtenerPersonas")")
+            .then(function (resp) {
+                return resp.json();
+            })
+            .then(function (miJson) {
+                console.log(miJson);
+                let resultado = "";
+
+                for (let i = 0; i < miJson.length; i++) {
+                    resultado += "<p>" + miJson[i].Nombre+ "</p>"
+                }
+
+                document.getElementById("MiDiv").innerHTML = miJson;
+            })
+    }
+</script>
+    
+<!-----------
+<div id="usuarios"></div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $.getJSON("~/Json/ObtenerPersonas", function (data) {
+            const str = JSON.parse(data);
+            for (let i = 0; i < str.length; i++) {
+                $("#usuarios").append("<p>" + str[i].Nombre + "</p>");
+            }
+
+
+        });
+
+
+    });
+
+
+</script>
+    --->
+
+
+
+
